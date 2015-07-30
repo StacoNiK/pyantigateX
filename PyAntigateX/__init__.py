@@ -6,6 +6,6 @@ __contact__ = "https://vk.com/python273"
 
 import sys
 if sys.version_info[0] == 2:
-    from pyantigate import *
+    from pyantigateX import *
 else:
-    from .pyantigate import *
+    from .pyantigateX import *

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import pyantigate
+import pyantigateX
 
 
 def main():

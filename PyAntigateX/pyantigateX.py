@@ -8,6 +8,7 @@ class Antigate():
     def __init__(self, key, params={}):
         self.key = key  # Ключ antigate
         self.params = params
+        self.setAntigate()
 
     def capcha(self, path):
         """ Send capcha
@@ -20,7 +21,7 @@ class Antigate():
         data.update(self.params)
         files = {'file': open(path, 'rb')}
 
-        response = http.post('http://antigate.com/in.php', data, files=files).text
+        response = http.post(self.server_url+'/in.php', data, files=files).text
 
         if 'OK' in response:
             capcha_id = response.split('|')[1]
@@ -40,7 +41,7 @@ class Antigate():
 
         while True:
             time.sleep(5)
-            response = http.post('http://antigate.com/res.php', data).text
+            response = http.post(self.server_url+'/res.php', data).text
 
             if 'OK' in response:
                 return response.split('|')[1]
@@ -54,8 +55,13 @@ class Antigate():
             'action': 'getbalance',
             'key': self.key
         }
+    def setAntigate(self):
+        self.server_url = "http://antigate.com"
 
-        response = http.post('http://antigate.com/res.php', data).text
+    def setRucaptcha(self):
+        self.server_url = "http://rucaptcha.com"
+
+        response = http.post(self.server_url+'/res.php', data).text
 
         if not 'ERROR' in response:
             return float(response)
@@ -87,7 +93,7 @@ class Capcha():
             'id': self.capcha_id
         }
 
-        response = http.post('http://antigate.com/res.php', data).text
+        response = http.post(self.server_url+'/res.php', data).text
 
         if 'OK' in response:
             return True
