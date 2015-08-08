@@ -55,11 +55,6 @@ class Antigate():
             'action': 'getbalance',
             'key': self.key
         }
-    def setAntigate(self):
-        self.server_url = "http://antigate.com"
-
-    def setRucaptcha(self):
-        self.server_url = "http://rucaptcha.com"
 
         response = http.post(self.server_url+'/res.php', data).text
 
@@ -67,6 +62,11 @@ class Antigate():
             return float(response)
         else:
             raise error(response)
+    def setAntigate(self):
+        self.server_url = "http://antigate.com"
+
+    def setRucaptcha(self):
+        self.server_url = "http://rucaptcha.com"
 
 
 class Capcha():
