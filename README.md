@@ -9,11 +9,7 @@ pyantigateX
 	...
 	a = pyantigate.Antigate(antigate_key)
 	a.setRucaptcha()
-
-Установка
-------------
-    $ easy_install pyantigateX
-
+	
 Для работы необходим модуль [Requests](https://github.com/kennethreitz/requests)
 
     $ easy_install requests
